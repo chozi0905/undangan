@@ -1,47 +1,37 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+<script setup>
+import { ref, onMounted } from 'vue'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+
+import Opening from './components/Opening.vue'
+import Hero from './components/Hero.vue'
+import Event from './components/Event.vue'
+import Gallery from './components/Gallery.vue'
+import RSVP from './components/RSVP.vue'
+import Footer from './components/Footer.vue'
+
+const opened = ref(false)
+const guestName = ref('Tamu Undangan')
+
+onMounted(() => {
+  const params = new URLSearchParams(window.location.search)
+  if (params.get('to')) guestName.value = params.get('to')
+
+  AOS.init({
+    duration: 800,
+    once: true
+  })
+})
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+  <Opening v-if="!opened" @open="opened = true" />
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  <div v-else>
+    <Hero :name="guestName" />
+    <Event />
+    <Gallery />
+    <RSVP :name="guestName" />
+    <Footer />
+  </div>
 </template>
-
-<style scoped>
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
-</style>

@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:foreverr.id)",
+      "Bash(curl -s -I \"http://localhost:5173/wedding-song.mp3\")",
+      "Bash(npm run *)",
+      "Bash(curl -s -L \"https://minimax-algeng-chat-tts-us.oss-us-east-1.aliyuncs.com/ccv2%2F2026-04-25%2FMiniMax-M2.7%2F2047618581725712521%2Fe8edb0f9e4d6c5d8c21d5a8c9bf24b980a259916b64adc4ea22f798a26665833..png?Expires=1777138492&OSSAccessKeyId=LTAI5tCpJNKCf5EkQHSuL9xg&Signature=Wkf3w5tjrS%2FjwfZtqn5jUZs49hc%3D\" -o \"C:/Users/GIlang/AppData/Local/Temp/ref_opening.png\")"
+    ]
+  }
+}

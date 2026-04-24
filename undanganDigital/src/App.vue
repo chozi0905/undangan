@@ -5,10 +5,12 @@ import 'aos/dist/aos.css'
 
 import Opening from './components/Opening.vue'
 import Hero from './components/Hero.vue'
-import Event from './components/Event.vue'
+import Story from './components/Story.vue'
 import Gallery from './components/Gallery.vue'
 import RSVP from './components/RSVP.vue'
+import Gift from './components/Gift.vue'
 import Footer from './components/Footer.vue'
+import MusicPlayer from './components/MusicPlayer.vue'
 
 const opened = ref(false)
 const guestName = ref('Tamu Undangan')
@@ -25,13 +27,15 @@ onMounted(() => {
 </script>
 
 <template>
-  <Opening v-if="!opened" @open="opened = true" />
+  <Opening v-if="!opened" :name="guestName" @open="opened = true" />
 
   <div v-else>
     <Hero :name="guestName" />
-    <Event />
+    <Story />
     <Gallery />
     <RSVP :name="guestName" />
+    <Gift />
     <Footer />
+    <MusicPlayer :autoplay="true" />
   </div>
 </template>

@@ -6,6 +6,9 @@
     // Extra safety for array and object lookups, but may have false positives.
     "noUncheckedIndexedAccess": true,
 
+    // Include vite/client types for .vue shims
+    "types": ["vite/client"],
+
     // Path mapping for cleaner imports.
     "paths": {
       "@/*": ["./src/*"]

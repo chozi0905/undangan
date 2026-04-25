@@ -97,6 +97,7 @@ const emit = defineEmits(['open'])
 }
 
 .content {
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -104,33 +105,6 @@ const emit = defineEmits(['open'])
   width: 100%;
   max-width: 420px;
   gap: 24px;
-}
-
-/* Falling Petals */
-.petals-container {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 100;
-  overflow: hidden;
-}
-
-.petal {
-  position: absolute;
-  top: -50px;
-  animation: fall linear forwards;
-  opacity: 0.8;
-}
-
-@keyframes fall {
-  0% {
-    top: -50px;
-    opacity: 0.8;
-  }
-  100% {
-    top: 110vh;
-    opacity: 0;
-  }
 }
 
 /* Frame & Photo */

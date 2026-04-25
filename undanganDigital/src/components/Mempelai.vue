@@ -38,7 +38,7 @@ const bride = {
     <div class="mempelai-container" :class="{ visible }">
       <!-- Header with Quran Verse -->
       <div class="quran-header" data-aos="fade-down">
-        <h2 class="quran-title">Maha Kuasa</h2>
+        <h2 class="quran-title">GM</h2>
         <div class="quran-verse">
           <p class="arabic">
             "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu

@@ -1,6 +1,5 @@
 <script setup>
 import bgHero from '@/assets/picture/background1.png'
-import Event from './Event.vue'
 
 defineProps(['name'])
 </script>
@@ -35,9 +34,6 @@ defineProps(['name'])
         </svg>
         <div class="line"></div>
       </div>
-
-      <!-- Event Component (Countdown + Cards) -->
-      <Event />
     </div>
   </section>
 </template>

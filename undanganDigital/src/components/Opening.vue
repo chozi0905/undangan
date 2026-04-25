@@ -1,62 +1,13 @@
 <script setup>
-import { ref } from 'vue'
 import bg from '@/assets/picture/background.png'
 import photo from '@/assets/picture/pict6.jpeg'
-import petal from '@/assets/picture/kelopakBunga.png'
 
 defineProps(['name'])
 const emit = defineEmits(['open'])
-
-const petals = ref([])
-const closing = ref(false)
-
-const createPetals = () => {
-  for (let i = 0; i < 30; i++) {
-    petals.value.push({
-      id: Date.now() + i,
-      left: Math.random() * 100,
-      delay: Math.random() * 2,
-      duration: 3 + Math.random() * 3,
-      rotate: Math.random() * 360,
-      size: 15 + Math.random() * 20
-    })
-  }
-
-  setTimeout(() => {
-    petals.value = []
-  }, 5 * 60 * 1000)
-}
-
-const handleOpen = () => {
-  createPetals()
-  closing.value = true
-  // Delay emit agar animasi kelopak terlihat dulu
-  setTimeout(() => {
-    emit('open')
-  }, 500)
-}
 </script>
 
 <template>
-  <section class="opening" :class="{ closing }" :style="{ backgroundImage: `url(${bg})` }">
-    <!-- Falling Petals -->
-    <div class="petals-container">
-      <img
-        v-for="p in petals"
-        :key="p.id"
-        :src="petal"
-        class="petal"
-        :style="{
-          left: p.left + '%',
-          animationDelay: p.delay + 's',
-          animationDuration: p.duration + 's',
-          width: p.size + 'px',
-          transform: 'rotate(' + p.rotate + 'deg)'
-        }"
-        alt=""
-      />
-    </div>
-
+  <section class="opening" :style="{ backgroundImage: `url(${bg})` }">
     <div class="content">
       <!-- Decorative Frame -->
       <div class="frame-wrapper">
@@ -121,7 +72,7 @@ const handleOpen = () => {
       </div>
 
       <!-- CTA Button -->
-      <button class="btn" @click="handleOpen">
+      <button class="btn" @click="emit('open')">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
           <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
@@ -143,17 +94,6 @@ const handleOpen = () => {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-}
-
-.opening.closing {
-  animation: fadeOut 0.5s ease forwards;
-}
-
-@keyframes fadeOut {
-  to {
-    opacity: 0;
-    transform: scale(1.05);
-  }
 }
 
 .content {

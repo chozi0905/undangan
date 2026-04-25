@@ -5,6 +5,7 @@ import 'aos/dist/aos.css'
 
 import Opening from './components/Opening.vue'
 import Hero from './components/Hero.vue'
+import LoveStory from './components/LoveStory.vue'
 import Story from './components/Story.vue'
 import Gallery from './components/Gallery.vue'
 import RSVP from './components/RSVP.vue'
@@ -96,6 +97,7 @@ onUnmounted(() => {
 
   <div v-else>
     <Hero :name="guestName" />
+    <LoveStory />
     <Story />
     <Gallery />
     <RSVP :name="guestName" />

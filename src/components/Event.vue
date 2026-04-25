@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 
-const targetDate = new Date('2026-12-20T08:00:00+07:00')
+const targetDate = new Date('2026-12-06T08:00:00+07:00')
 
 const timeLeft = ref({
   days: 0,
@@ -36,7 +36,7 @@ onUnmounted(() => {
 })
 
 // Ganti dengan link Google Maps lokasi pernikahan kamu
-const locationUrl = 'https://maps.google.com/?q=kediaman+mempelai+wanita'
+const locationUrl = 'https://maps.google.com/?q=Villa+17'
 </script>
 
 <template>

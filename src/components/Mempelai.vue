@@ -11,15 +11,15 @@ onMounted(() => {
 
 // Data pengantin - bisa disesuaikan
 const groom = {
-  name: 'Dadang Saputra',
-  father: 'Bpk. H. Ahmad Wijaya',
-  mother: 'Ibu Hj. Siti Aminah',
+  name: 'Gilang Raihansyah, S.Kom',
+  father: 'Bpk. Uyi',
+  mother: 'Ibu Supiyani',
   photo: null
 }
 
 const bride = {
-  name: 'Dewi Ratnaningsih',
-  father: 'Bpk. H. Budi Santoso',
+  name: 'Maya Nursifa',
+  father: 'Bpk. Asep',
   mother: 'Ibu Hj. Nurhaliza',
   photo: null
 }

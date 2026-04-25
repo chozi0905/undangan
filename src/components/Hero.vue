@@ -7,6 +7,9 @@ defineProps(['name'])
 <template>
   <section class="hero" :style="{ backgroundImage: `url(${bgHero})` }">
     <div class="hero-content">
+      <!-- Bismillah -->
+      <p class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+
       <!-- Top Ornament -->
       <div class="ornament-top">
         <div class="line"></div>
@@ -15,10 +18,6 @@ defineProps(['name'])
         </svg>
         <div class="line"></div>
       </div>
-      <!-- Bismillah -->
-      <h1 class="wedding-of">بسم الله الرحمن الرحيم</h1>
-      <br />
-      <br />
       <!-- THE WEDDING OF -->
       <p class="wedding-of">THE WEDDING OF</p>
 
@@ -80,6 +79,15 @@ defineProps(['name'])
   flex: 1;
   height: 1px;
   background: linear-gradient(to right, transparent, #d4b483, transparent);
+}
+
+/* Bismillah */
+.bismillah {
+  font-family: 'Amiri', serif;
+  font-size: clamp(20px, 5vw, 28px);
+  color: #d4b483;
+  margin-bottom: 10px;
+  direction: rtl;
 }
 
 /* THE WEDDING OF */

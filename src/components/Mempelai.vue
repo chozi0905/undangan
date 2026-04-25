@@ -261,7 +261,7 @@ const bride = {
 .quran-title {
   font-family: 'Great Vibes', cursive;
   font-size: clamp(32px, 8vw, 48px);
-  color: #f8b4c4;
+  color: #d4b483;
   margin-bottom: 20px;
 }
 

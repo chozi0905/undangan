@@ -34,6 +34,9 @@ onMounted(() => {
 onUnmounted(() => {
   clearInterval(timer)
 })
+
+// Ganti dengan link Google Maps lokasi pernikahan kamu
+const locationUrl = 'https://maps.google.com/?q=kediaman+mempelai+wanita'
 </script>
 
 <template>
@@ -107,6 +110,15 @@ onUnmounted(() => {
         </div>
 
         <p class="event-address">Jl. examples No. 123, Kota</p>
+
+        <!-- Map Button -->
+        <a :href="locationUrl" target="_blank" class="map-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2Z" stroke="currentColor" stroke-width="2" fill="none"/>
+            <circle cx="12" cy="9" r="3" stroke="currentColor" stroke-width="2" fill="none"/>
+          </svg>
+          Lihat Lokasi
+        </a>
       </div>
 
       <!-- Resepsi -->
@@ -155,6 +167,15 @@ onUnmounted(() => {
         </div>
 
         <p class="event-address">Jl. examples No. 123, Kota</p>
+
+        <!-- Map Button -->
+        <a :href="locationUrl" target="_blank" class="map-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2Z" stroke="currentColor" stroke-width="2" fill="none"/>
+            <circle cx="12" cy="9" r="3" stroke="currentColor" stroke-width="2" fill="none"/>
+          </svg>
+          Lihat Lokasi
+        </a>
       </div>
     </div>
   </div>
@@ -291,6 +312,29 @@ onUnmounted(() => {
   font-size: clamp(10px, 2.5vw, 12px);
   color: #a09080;
   margin-top: 2px;
+}
+
+/* Map Button */
+.map-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #d4b483, #c8a870);
+  color: white;
+  border-radius: 25px;
+  text-decoration: none;
+  font-family: 'Lato', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(212, 180, 131, 0.3);
+}
+
+.map-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(212, 180, 131, 0.4);
 }
 
 /* Responsive */

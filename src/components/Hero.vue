@@ -15,6 +15,8 @@ defineProps(['name'])
         </svg>
         <div class="line"></div>
       </div>
+      <!-- Bismillah -->
+      <h1 class="wedding-of">بسم الله الرحمن الرحيم</h1>
 
       <!-- THE WEDDING OF -->
       <p class="wedding-of">THE WEDDING OF</p>

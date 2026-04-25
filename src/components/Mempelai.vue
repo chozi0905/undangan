@@ -35,6 +35,9 @@ const bride = {
       <div class="deco-line deco-4"></div>
     </div>
 
+    <!-- Gradient overlay -->
+    <div class="bg-overlay"></div>
+
     <div class="mempelai-container" :class="{ visible }">
       <!-- Header with Quran Verse -->
       <div class="quran-header" data-aos="fade-down">
@@ -144,14 +147,14 @@ const bride = {
 <style scoped>
 .mempelai {
   padding: 80px 24px;
-  background: linear-gradient(180deg, #fef9f5 0%, #fff 100%);
+  background: url('@/assets/picture/background2.png') center/cover no-repeat;
   position: relative;
   overflow: hidden;
   display: flex;
   justify-content: center;
 }
 
-/* Background Decorations */
+/* Background Decorations - Floral Pattern */
 .bg-decoration {
   position: absolute;
   inset: 0;
@@ -161,40 +164,76 @@ const bride = {
 .deco-circle {
   position: absolute;
   border-radius: 50%;
-  opacity: 0.1;
+  opacity: 0.08;
+  border: 2px solid #d4b483;
+  background: transparent;
 }
 
 .deco-1 {
-  width: 300px;
-  height: 300px;
-  background: #d4b483;
-  top: -100px;
-  left: -100px;
+  width: 350px;
+  height: 350px;
+  top: -150px;
+  left: -150px;
 }
 
 .deco-2 {
-  width: 200px;
-  height: 200px;
-  background: #f8b4c4;
-  bottom: -50px;
-  right: -50px;
+  width: 250px;
+  height: 250px;
+  bottom: -80px;
+  right: -80px;
 }
 
 .deco-line {
   position: absolute;
   height: 1px;
   background: linear-gradient(to right, transparent, #d4b483, transparent);
-  opacity: 0.3;
+  opacity: 0.15;
 }
 
 .deco-3 {
   width: 100%;
-  top: 100px;
+  top: 80px;
 }
 
 .deco-4 {
   width: 100%;
-  bottom: 100px;
+  bottom: 80px;
+}
+
+/* Extra decorative elements */
+.deco-flower {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  opacity: 0.1;
+  background: radial-gradient(circle, #d4b483 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.deco-flower-1 {
+  top: 20%;
+  left: 10%;
+}
+
+.deco-flower-2 {
+  top: 60%;
+  right: 15%;
+}
+
+.deco-flower-3 {
+  bottom: 25%;
+  left: 20%;
+}
+
+/* Gradient overlay */
+.bg-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at top left, rgba(212, 180, 131, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(248, 180, 196, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at center, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+  pointer-events: none;
 }
 
 /* Container */
@@ -222,13 +261,13 @@ const bride = {
 .quran-title {
   font-family: 'Great Vibes', cursive;
   font-size: clamp(32px, 8vw, 48px);
-  color: #2c2c2c;
+  color: #f8b4c4;
   margin-bottom: 20px;
 }
 
 .quran-verse {
-  background: rgba(212, 180, 131, 0.08);
-  border: 1px solid rgba(212, 180, 131, 0.2);
+  background: rgba(212, 180, 131, 0.1);
+  border: 1px solid rgba(212, 180, 131, 0.25);
   border-radius: 16px;
   padding: 24px;
   max-width: 600px;
@@ -238,7 +277,7 @@ const bride = {
 .arabic {
   font-family: 'Lato', sans-serif;
   font-size: clamp(14px, 3.5vw, 16px);
-  color: #5a5a5a;
+  color: #d4b483;
   line-height: 1.8;
   font-style: italic;
   margin-bottom: 12px;
@@ -262,12 +301,12 @@ const bride = {
 }
 
 .person-card {
-  background: white;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(248, 248, 252, 0.9));
   border-radius: 24px;
   padding: 32px;
   text-align: center;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(212, 180, 131, 0.15);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(212, 180, 131, 0.2);
   transition: all 0.3s ease;
   flex: 1;
   min-width: 280px;
@@ -276,13 +315,13 @@ const bride = {
 
 .person-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 15px 50px rgba(212, 180, 131, 0.2);
+  box-shadow: 0 15px 50px rgba(212, 180, 131, 0.25);
 }
 
 .card-label {
   font-family: 'Playfair Display', serif;
   font-size: clamp(14px, 3vw, 16px);
-  color: #d4b483;
+  color: #b8976a;
   letter-spacing: 3px;
   text-transform: uppercase;
   margin-bottom: 20px;
@@ -292,8 +331,8 @@ const bride = {
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  background: linear-gradient(135deg, rgba(212, 180, 131, 0.1), rgba(248, 180, 196, 0.1));
-  border: 3px solid rgba(212, 180, 131, 0.3);
+  background: linear-gradient(135deg, rgba(212, 180, 131, 0.2), rgba(248, 180, 196, 0.2));
+  border: 3px solid rgba(212, 180, 131, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -303,7 +342,7 @@ const bride = {
 .person-name {
   font-family: 'Great Vibes', cursive;
   font-size: clamp(28px, 6vw, 36px);
-  color: #2c2c2c;
+  color: #1a1a2e;
   margin-bottom: 16px;
 }
 
@@ -312,7 +351,7 @@ const bride = {
   flex-direction: column;
   gap: 8px;
   padding-top: 16px;
-  border-top: 1px solid rgba(212, 180, 131, 0.2);
+  border-top: 1px solid rgba(212, 180, 131, 0.25);
 }
 
 .parent {
@@ -322,7 +361,7 @@ const bride = {
   gap: 8px;
   font-family: 'Lato', sans-serif;
   font-size: 13px;
-  color: #6a6a6a;
+  color: #4a4a4a;
 }
 
 .parent-icon {

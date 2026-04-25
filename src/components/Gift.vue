@@ -8,14 +8,14 @@ const accounts = [
   {
     id: 'BSI',
     bank: 'Bank Syariah Indonesia',
-    account: '1200011109753',
+    account: '7311760488',
     name: 'MAYA NURSIFA',
     icon: 'M3 7H21V17H3V7ZM3 7V5H21V7M3 17V19H21V17'
   },
   {
     id: 'BSI',
     bank: 'Bank Syariah Indonesia',
-    account: '6241031982',
+    account: '7194792580',
     name: 'GILANG RAIHANSYAH',
     icon: 'M3 7H21V17H3V7ZM3 7V5H21V7M3 17V19H21V17'
   },

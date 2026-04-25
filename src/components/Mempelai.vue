@@ -19,7 +19,7 @@ const groom = {
 
 const bride = {
   name: 'Maya Nursifa',
-  father: 'Bpk. Asep S',
+  father: 'Bpk. Asep Supriadi',
   mother: 'Ibu Eneng Suhaedah',
   photo: null
 }

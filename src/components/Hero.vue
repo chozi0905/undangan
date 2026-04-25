@@ -17,7 +17,7 @@ defineProps(['name'])
       </div>
       <!-- Bismillah -->
       <h1 class="wedding-of">بسم الله الرحمن الرحيم</h1>
-
+      <br />
       <!-- THE WEDDING OF -->
       <p class="wedding-of">THE WEDDING OF</p>
 

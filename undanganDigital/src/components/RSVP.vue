@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import bgRsvp from '@/assets/picture/backgroundevent.png'
+import bgRsvp from '@/assets/picture/background2.png'
 
 defineProps(['name'])
 
@@ -30,8 +30,6 @@ Dikirim dari Undangan Digital`
 
 <template>
   <section class="rsvp" :style="{ backgroundImage: `url(${bgRsvp})` }">
-    <div class="overlay"></div>
-
     <!-- Section Header -->
     <div class="section-header">
       <div class="header-ornament">
@@ -148,18 +146,6 @@ Dikirim dari Undangan Digital`
   flex-direction: column;
   align-items: center;
   position: relative;
-}
-
-.overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.3) 0%,
-    rgba(255, 255, 255, 0.6) 30%,
-    rgba(255, 255, 255, 0.9) 100%
-  );
-  z-index: 1;
 }
 
 /* Section Header */

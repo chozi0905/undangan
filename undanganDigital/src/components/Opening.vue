@@ -1,14 +1,56 @@
 <script setup>
+import { ref } from 'vue'
 import bg from '@/assets/picture/background.png'
 import photo from '@/assets/picture/pict6.jpeg'
+import petal from '@/assets/picture/kelopakBunga.png'
 
 defineProps(['name'])
 const emit = defineEmits(['open'])
+
+const petals = ref([])
+
+const createPetals = () => {
+  for (let i = 0; i < 30; i++) {
+    petals.value.push({
+      id: Date.now() + i,
+      left: Math.random() * 100,
+      delay: Math.random() * 2,
+      duration: 3 + Math.random() * 3,
+      rotate: Math.random() * 360,
+      size: 15 + Math.random() * 20
+    })
+  }
+
+  setTimeout(() => {
+    petals.value = []
+  }, 5 * 60 * 1000)
+}
+
+const handleOpen = () => {
+  createPetals()
+  emit('open')
+}
 </script>
 
 <template>
   <section class="opening" :style="{ backgroundImage: `url(${bg})` }">
-    <div class="overlay"></div>
+    <!-- Falling Petals -->
+    <div class="petals-container">
+      <img
+        v-for="p in petals"
+        :key="p.id"
+        :src="petal"
+        class="petal"
+        :style="{
+          left: p.left + '%',
+          animationDelay: p.delay + 's',
+          animationDuration: p.duration + 's',
+          width: p.size + 'px',
+          transform: 'rotate(' + p.rotate + 'deg)'
+        }"
+        alt=""
+      />
+    </div>
 
     <div class="content">
       <!-- Decorative Frame -->
@@ -74,7 +116,7 @@ const emit = defineEmits(['open'])
       </div>
 
       <!-- CTA Button -->
-      <button class="btn" @click="emit('open')">
+      <button class="btn" @click="handleOpen">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
           <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
@@ -98,22 +140,7 @@ const emit = defineEmits(['open'])
   overflow: hidden;
 }
 
-.overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.2) 0%,
-    rgba(255, 255, 255, 0.5) 30%,
-    rgba(255, 255, 255, 0.8) 60%,
-    rgba(255, 255, 255, 0.95) 100%
-  );
-  z-index: 1;
-}
-
 .content {
-  position: relative;
-  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -122,6 +149,33 @@ const emit = defineEmits(['open'])
   width: 100%;
   max-width: 420px;
   gap: 24px;
+}
+
+/* Falling Petals */
+.petals-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  overflow: hidden;
+}
+
+.petal {
+  position: absolute;
+  top: -50px;
+  animation: fall linear forwards;
+  opacity: 0.8;
+}
+
+@keyframes fall {
+  0% {
+    top: -50px;
+    opacity: 0.8;
+  }
+  100% {
+    top: 110vh;
+    opacity: 0;
+  }
 }
 
 /* Frame & Photo */

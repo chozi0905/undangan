@@ -1,11 +1,9 @@
 <script setup>
-import bgFooter from '@/assets/picture/backgroundFooter.png'
+import bgFooter from '@/assets/picture/background3.png'
 </script>
 
 <template>
   <footer class="footer" :style="{ backgroundImage: `url(${bgFooter})` }">
-    <div class="overlay"></div>
-
     <!-- Top Decoration -->
     <div class="footer-decoration">
       <svg width="80" height="40" viewBox="0 0 80 40" fill="none">
@@ -49,22 +47,9 @@ import bgFooter from '@/assets/picture/backgroundFooter.png'
   position: relative;
 }
 
-.overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.3) 0%,
-    rgba(255, 255, 255, 0.6) 30%,
-    rgba(255, 255, 255, 0.9) 100%
-  );
-  z-index: 1;
-}
-
 /* Footer Decoration */
 .footer-decoration {
   position: relative;
-  z-index: 2;
   margin-bottom: 30px;
 }
 

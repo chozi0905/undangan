@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import bgGift from '@/assets/picture/backgroundGift.png'
+import bgGift from '@/assets/picture/background2.png'
 
 const copied = ref(null)
 
@@ -43,8 +43,6 @@ const copyToClipboard = async (text, id) => {
 
 <template>
   <section class="gift" :style="{ backgroundImage: `url(${bgGift})` }">
-    <div class="overlay"></div>
-
     <!-- Section Header -->
     <div class="section-header">
       <div class="header-ornament">
@@ -118,19 +116,6 @@ const copyToClipboard = async (text, id) => {
   flex-direction: column;
   align-items: center;
   position: relative;
-}
-
-.overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.3) 0%,
-    rgba(255, 255, 255, 0.6) 30%,
-    rgba(255, 255, 255, 0.85) 70%,
-    rgba(255, 255, 255, 0.95) 100%
-  );
-  z-index: 1;
 }
 
 /* Section Header */

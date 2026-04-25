@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
-import bgHero from '@/assets/picture/backgroundHero.png'
+import bgHero from '@/assets/picture/background1.png'
 
 defineProps(['name'])
 
@@ -41,8 +41,6 @@ onUnmounted(() => {
 
 <template>
   <section class="hero" :style="{ backgroundImage: `url(${bgHero})` }">
-    <div class="overlay"></div>
-
     <div class="hero-content">
       <!-- Top Ornament -->
       <div class="ornament-top">
@@ -209,22 +207,7 @@ onUnmounted(() => {
   overflow: hidden;
 }
 
-.overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.25) 0%,
-    rgba(255, 255, 255, 0.5) 30%,
-    rgba(255, 255, 255, 0.85) 70%,
-    rgba(255, 255, 255, 0.95) 100%
-  );
-  z-index: 1;
-}
-
 .hero-content {
-  position: relative;
-  z-index: 2;
   text-align: center;
   display: flex;
   flex-direction: column;

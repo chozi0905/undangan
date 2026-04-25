@@ -7,15 +7,13 @@ import pict5 from '@/assets/picture/pict5.jpeg'
 import pict6 from '@/assets/picture/pict6.jpeg'
 import pict7 from '@/assets/picture/pict7.jpeg'
 import pict8 from '@/assets/picture/pict8.jpeg'
-import bgGallery from '@/assets/picture/backgroundGalerry.png'
+import bgGallery from '@/assets/picture/background2.png'
 
 const photos = [pict1, pict2, pict3, pict4, pict5, pict6, pict7, pict8]
 </script>
 
 <template>
   <section class="gallery" :style="{ backgroundImage: `url(${bgGallery})` }">
-    <div class="overlay"></div>
-
     <!-- Section Header -->
     <div class="section-header">
       <div class="header-ornament">
@@ -63,23 +61,8 @@ const photos = [pict1, pict2, pict3, pict4, pict5, pict6, pict7, pict8]
   position: relative;
 }
 
-.overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.3) 0%,
-    rgba(255, 255, 255, 0.6) 30%,
-    rgba(255, 255, 255, 0.85) 70%,
-    rgba(255, 255, 255, 0.95) 100%
-  );
-  z-index: 1;
-}
-
 /* Section Header */
 .section-header {
-  position: relative;
-  z-index: 2;
   text-align: center;
   margin-bottom: 40px;
 }

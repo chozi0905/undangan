@@ -1,5 +1,5 @@
 <script setup>
-import bgStory from '@/assets/picture/backgroundStory.png'
+import bgStory from '@/assets/picture/background2.png'
 
 // Story timeline data
 const stories = [
@@ -29,8 +29,6 @@ const stories = [
 
 <template>
   <section class="story" :style="{ backgroundImage: `url(${bgStory})` }">
-    <div class="overlay"></div>
-
     <!-- Section Header -->
     <div class="section-header">
       <div class="header-ornament">
@@ -107,23 +105,8 @@ const stories = [
   overflow: hidden;
 }
 
-.overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.3) 0%,
-    rgba(255, 255, 255, 0.6) 30%,
-    rgba(255, 255, 255, 0.85) 70%,
-    rgba(255, 255, 255, 0.95) 100%
-  );
-  z-index: 1;
-}
-
 /* Section Header */
 .section-header {
-  position: relative;
-  z-index: 2;
   text-align: center;
   margin-bottom: 50px;
 }

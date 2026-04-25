@@ -28,7 +28,7 @@ onMounted(() => {
 })
 
 const createPetals = () => {
-  for (let i = 0; i < 30; i++) {
+  for (let i = 0; i < 1000; i++) {
     petals.value.push({
       id: Date.now() + i,
       left: Math.random() * 100,
@@ -41,7 +41,7 @@ const createPetals = () => {
 
   setTimeout(() => {
     petals.value = []
-  }, 5 * 60 * 1000)
+  }, 20 * 60 * 1000)
 }
 
 const handleOpen = () => {

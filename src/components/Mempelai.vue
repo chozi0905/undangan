@@ -117,7 +117,7 @@ const bride = {
           <h3 class="person-name">{{ bride.name }}</h3>
 
           <div class="parents-info">
-            Putri kedua dari
+            Putri pertama dari
             <br>Bapak {{ bride.father }}
             <br>& Ibu {{ bride.mother }}
           </div>

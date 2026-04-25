@@ -52,6 +52,15 @@ defineProps(['name'])
   justify-content: center;
   position: relative;
   overflow: hidden;
+  padding-top: 60px;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.3) 100%);
+  pointer-events: none;
 }
 
 .hero-content {
@@ -59,10 +68,13 @@ defineProps(['name'])
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 20px;
-  padding: 50px 24px;
+  padding: 40px 24px;
   width: 100%;
   max-width: 420px;
+  min-height: calc(100vh - 120px);
+  min-height: calc(100dvh - 120px);
 }
 
 /* Ornament */
@@ -86,8 +98,9 @@ defineProps(['name'])
   font-family: 'Amiri', serif;
   font-size: clamp(20px, 5vw, 28px);
   color: #d4b483;
-  margin-bottom: 10px;
+  margin: 10px 0;
   direction: rtl;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
 /* THE WEDDING OF */
@@ -97,7 +110,7 @@ defineProps(['name'])
   color: #d4b483;
   letter-spacing: 6px;
   text-transform: uppercase;
-  margin-top: 8px;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
 
 /* Couple Name */
@@ -113,6 +126,7 @@ defineProps(['name'])
   flex-wrap: wrap;
   font-weight: 400;
   margin: 4px 0;
+  text-shadow: 0 2px 6px rgba(255,255,255,0.5);
 }
 
 .ampersand {

@@ -2,15 +2,16 @@
 import { ref } from 'vue'
 import bgRsvp from '@/assets/picture/background2.png'
 
-defineProps(['name'])
+const props = defineProps(['name'])
 
-const name = ref('')
+const guestName = ref('')
 const message = ref('')
 const attendance = ref('hadir')
 const guestCount = ref(1)
 
 const sendToWhatsApp = () => {
-  const greeting = name.value ? `Hallo, saya ${name.value}.` : 'Hallo, saya Tamu Undangan.'
+  const finalName = guestName.value || props.name || 'Tamu Undangan'
+  const greeting = `Hallo, saya ${finalName}.`
   const hadirText = attendance.value === 'hadir' ? 'Berdiri hadir' : 'Maaf, tidak bisa hadir'
   const text = `${greeting}
 
@@ -48,7 +49,7 @@ Dikirim dari Undangan Digital`
       <div class="form-group">
         <label class="form-label">Nama Tamu</label>
         <input
-          v-model="name"
+          v-model="guestName"
           type="text"
           class="form-input"
           placeholder="Masukkan nama Anda"

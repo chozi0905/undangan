@@ -8,6 +8,7 @@ defineProps(['name'])
 const emit = defineEmits(['open'])
 
 const petals = ref([])
+const closing = ref(false)
 
 const createPetals = () => {
   for (let i = 0; i < 30; i++) {
@@ -28,12 +29,16 @@ const createPetals = () => {
 
 const handleOpen = () => {
   createPetals()
-  emit('open')
+  closing.value = true
+  // Delay emit agar animasi kelopak terlihat dulu
+  setTimeout(() => {
+    emit('open')
+  }, 500)
 }
 </script>
 
 <template>
-  <section class="opening" :style="{ backgroundImage: `url(${bg})` }">
+  <section class="opening" :class="{ closing }" :style="{ backgroundImage: `url(${bg})` }">
     <!-- Falling Petals -->
     <div class="petals-container">
       <img
@@ -140,8 +145,18 @@ const handleOpen = () => {
   overflow: hidden;
 }
 
+.opening.closing {
+  animation: fadeOut 0.5s ease forwards;
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+}
+
 .content {
-  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;

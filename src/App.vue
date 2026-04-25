@@ -39,7 +39,7 @@ const addPetal = () => {
     left: Math.random() * 100,
     delay: Math.random() * 0.5,
     duration: 4 + Math.random() * 4,
-    size: 8 + Math.random() * 12
+    size: 15 + Math.random() * 20
   })
 }
 
@@ -52,13 +52,13 @@ const removePetal = (id) => {
 
 const createPetals = () => {
   // Add initial batch
-  for (let i = 0; i < 15; i++) {
+  for (let i = 0; i < 25; i++) {
     addPetal()
   }
 
   // Continue adding petals periodically
   petalInterval = setInterval(() => {
-    if (petals.value.length < 30) {
+    if (petals.value.length < 50) {
       addPetal()
     }
   }, 400)

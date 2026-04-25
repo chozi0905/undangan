@@ -13,6 +13,7 @@ import RSVP from './components/RSVP.vue'
 import Gift from './components/Gift.vue'
 import Footer from './components/Footer.vue'
 import MusicPlayer from './components/MusicPlayer.vue'
+import FloatingNav from './components/FloatingNav.vue'
 import petalImg from './assets/picture/kelopakBunga.png'
 
 const opened = ref(false)
@@ -97,15 +98,16 @@ onUnmounted(() => {
   <Opening v-if="!opened" :name="guestName" @open="handleOpen" />
 
   <div v-else>
-    <Hero :name="guestName" />
-    <Mempelai />
-    <Event />
-    <Story />
-    <Gallery />
-    <RSVP :name="guestName" />
-    <Gift />
-    <Footer />
+    <Hero id="hero" :name="guestName" />
+    <Mempelai id="mempelai" />
+    <Event id="event" />
+    <Story id="story" />
+    <Gallery id="gallery" />
+    <RSVP id="rsvp" :name="guestName" />
+    <Gift id="gift" />
+    <Footer id="footer" />
     <MusicPlayer :autoplay="true" />
+    <FloatingNav />
   </div>
 </template>
 

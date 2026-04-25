@@ -11,6 +11,8 @@ const timeLeft = ref({
 })
 
 let timer = null
+let observer = null
+const visible = ref(false)
 
 const updateTimer = () => {
   const now = new Date()
@@ -29,10 +31,19 @@ const updateTimer = () => {
 onMounted(() => {
   updateTimer()
   timer = setInterval(updateTimer, 1000)
+
+  const section = document.querySelector('.event-section')
+  observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      visible.value = entry.isIntersecting
+    })
+  }, { threshold: 0.2 })
+  if (section) observer.observe(section)
 })
 
 onUnmounted(() => {
   clearInterval(timer)
+  if (observer) observer.disconnect()
 })
 
 // Ganti dengan link Google Maps lokasi pernikahan kamu
@@ -40,7 +51,7 @@ const locationUrl = 'https://maps.google.com/?q=Villa+17'
 </script>
 
 <template>
-  <div class="event-section">
+  <div class="event-section" :class="{ visible }">
     <!-- Countdown Timer -->
     <div class="countdown">
       <div class="countdown-item">
@@ -90,7 +101,7 @@ const locationUrl = 'https://maps.google.com/?q=Villa+17'
             <path d="M3 10H21" stroke="#d4b483" stroke-width="1.5"/>
             <path d="M8 2V6M16 2V6" stroke="#d4b483" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
-          <p class="event-date">Minggu, 20 Desember 2026</p>
+          <p class="event-date">Minggu, 06 Desember 2026</p>
         </div>
 
         <div class="event-detail">
@@ -109,7 +120,7 @@ const locationUrl = 'https://maps.google.com/?q=Villa+17'
           <p class="event-place">Kediaman Mempelai Wanita</p>
         </div>
 
-        <p class="event-address">Jl. examples No. 123, Kota</p>
+        <p class="event-address">Jl.Hanjawar Loji, kampung Tegalega rt.02/rw.12, villa 17 samping hotel Le eminence,desa palasari kec.cipanas kab.cianjur jawa barat</p>
 
         <!-- Map Button -->
         <a :href="locationUrl" target="_blank" class="map-btn">
@@ -147,7 +158,7 @@ const locationUrl = 'https://maps.google.com/?q=Villa+17'
             <path d="M3 10H21" stroke="#d4b483" stroke-width="1.5"/>
             <path d="M8 2V6M16 2V6" stroke="#d4b483" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
-          <p class="event-date">Minggu, 20 Desember 2026</p>
+          <p class="event-date">Minggu, 06 Desember 2026</p>
         </div>
 
         <div class="event-detail">
@@ -166,7 +177,7 @@ const locationUrl = 'https://maps.google.com/?q=Villa+17'
           <p class="event-place">Kediaman Mempelai Wanita</p>
         </div>
 
-        <p class="event-address">Jl. examples No. 123, Kota</p>
+        <p class="event-address">Jl.Hanjawar Loji, kampung Tegalega rt.02/rw.12, villa 17 samping hotel Le eminence,desa palasari kec.cipanas kab.cianjur jawa barat</p>
 
         <!-- Map Button -->
         <a :href="locationUrl" target="_blank" class="map-btn">
@@ -188,6 +199,14 @@ const locationUrl = 'https://maps.google.com/?q=Villa+17'
   align-items: center;
   gap: 20px;
   width: 100%;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease;
+}
+
+.event-section.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Countdown Timer */

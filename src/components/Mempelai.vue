@@ -1,26 +1,43 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
+import pihakLaki from '@/assets/picture/pihakLaki.png'
+import pihakPerempuan from '@/assets/picture/pihakPerempuan.png'
 
 const visible = ref(false)
+let observer = null
 
 onMounted(() => {
-  setTimeout(() => {
-    visible.value = true
-  }, 100)
+  const section = document.querySelector('.mempelai')
+
+  observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        visible.value = true
+      } else {
+        visible.value = false
+      }
+    })
+  }, { threshold: 0.2 })
+
+  if (section) observer.observe(section)
+})
+
+onUnmounted(() => {
+  if (observer) observer.disconnect()
 })
 
 // Data pengantin - bisa disesuaikan
 const groom = {
   name: 'Gilang Raihansyah, S.Kom',
-  father: 'Bpk. Uyi',
-  mother: 'Ibu Supiyani',
+  father: 'Uyi',
+  mother: 'Supiyani',
   photo: null
 }
 
 const bride = {
   name: 'Maya Nursifa',
-  father: 'Bpk. Asep Supriadi',
-  mother: 'Ibu Eneng Suhaedah',
+  father: 'Asep Supriadi',
+  mother: 'Eneng Suhaedah',
   photo: null
 }
 </script>
@@ -52,6 +69,16 @@ const bride = {
         </div>
       </div>
 
+      <!-- Invitation Greeting -->
+      <div class="invitation-greeting" data-aos="fade-up">
+        <p class="greeting-arabic">اَلسَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ</p>
+        <p class="greeting-text">
+          Dengan memohon rahmat dan ridho Allah Subhanahu Wa Ta'ala,
+          <br>Kami mengundang Bapak/Ibu/Saudara/i, untuk menghadiri
+          <br>Resepsi Pernikahan kami.
+        </p>
+      </div>
+
       <!-- Couple Section -->
       <div class="couple-section">
         <!-- Groom -->
@@ -59,33 +86,15 @@ const bride = {
           <div class="card-label">Mempelai Pria</div>
 
           <div class="photo-placeholder">
-            <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-              <circle cx="24" cy="18" r="10" stroke="#d4b483" stroke-width="2" fill="none"/>
-              <path d="M10 42C10 32 16 26 24 26C32 26 38 32 38 42" stroke="#d4b483" stroke-width="2" fill="none"/>
-            </svg>
+            <img :src="pihakLaki" alt="Mempelai Pria" class="photo-icon" />
           </div>
 
           <h3 class="person-name">{{ groom.name }}</h3>
 
           <div class="parents-info">
-            <div class="parent">
-              <span class="parent-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                  <circle cx="12" cy="8" r="4" stroke="#d4b483" stroke-width="1.5" fill="none"/>
-                  <path d="M4 20C4 16 8 14 12 14C16 14 20 16 20 20" stroke="#d4b483" stroke-width="1.5" fill="none"/>
-                </svg>
-              </span>
-              <span>{{ groom.father }}</span>
-            </div>
-            <div class="parent">
-              <span class="parent-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                  <circle cx="12" cy="8" r="4" stroke="#d4b483" stroke-width="1.5" fill="none"/>
-                  <path d="M4 20C4 16 8 14 12 14C16 14 20 16 20 20" stroke="#d4b483" stroke-width="1.5" fill="none"/>
-                </svg>
-              </span>
-              <span>{{ groom.mother }}</span>
-            </div>
+            Putra kedua dari
+            <br>Bapak {{ groom.father }}
+            <br>& Ibu {{ groom.mother }}
           </div>
         </div>
 
@@ -102,33 +111,15 @@ const bride = {
           <div class="card-label">Mempelai Wanita</div>
 
           <div class="photo-placeholder">
-            <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-              <circle cx="24" cy="18" r="10" stroke="#d4b483" stroke-width="2" fill="none"/>
-              <path d="M10 42C10 32 16 26 24 26C32 26 38 32 38 42" stroke="#d4b483" stroke-width="2" fill="none"/>
-            </svg>
+            <img :src="pihakPerempuan" alt="Mempelai Wanita" class="photo-icon" />
           </div>
 
           <h3 class="person-name">{{ bride.name }}</h3>
 
           <div class="parents-info">
-            <div class="parent">
-              <span class="parent-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                  <circle cx="12" cy="8" r="4" stroke="#d4b483" stroke-width="1.5" fill="none"/>
-                  <path d="M4 20C4 16 8 14 12 14C16 14 20 16 20 20" stroke="#d4b483" stroke-width="1.5" fill="none"/>
-                </svg>
-              </span>
-              <span>{{ bride.father }}</span>
-            </div>
-            <div class="parent">
-              <span class="parent-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                  <circle cx="12" cy="8" r="4" stroke="#d4b483" stroke-width="1.5" fill="none"/>
-                  <path d="M4 20C4 16 8 14 12 14C16 14 20 16 20 20" stroke="#d4b483" stroke-width="1.5" fill="none"/>
-                </svg>
-              </span>
-              <span>{{ bride.mother }}</span>
-            </div>
+            Putri kedua dari
+            <br>Bapak {{ bride.father }}
+            <br>& Ibu {{ bride.mother }}
           </div>
         </div>
       </div>
@@ -277,7 +268,7 @@ const bride = {
 .arabic {
   font-family: 'Lato', sans-serif;
   font-size: clamp(14px, 3.5vw, 16px);
-  color: #d4b483;
+  color: #5a5a5a;
   line-height: 1.8;
   font-style: italic;
   margin-bottom: 12px;
@@ -289,6 +280,37 @@ const bride = {
   color: #d4b483;
   letter-spacing: 2px;
   text-transform: uppercase;
+}
+
+/* Invitation Greeting */
+.invitation-greeting {
+  text-align: center;
+  margin: 40px auto;
+  padding: 24px;
+  max-width: 600px;
+}
+
+.greeting-arabic {
+  font-family: 'Amiri', serif;
+  font-size: clamp(22px, 5vw, 28px);
+  color: #d4b483;
+  direction: rtl;
+  margin-bottom: 8px;
+}
+
+.greeting-translate {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(12px, 3vw, 14px);
+  color: #d4b483;
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+}
+
+.greeting-text {
+  font-family: 'Lato', sans-serif;
+  font-size: clamp(13px, 3vw, 15px);
+  color: #5a5a5a;
+  line-height: 1.8;
 }
 
 /* Couple Section */
@@ -337,6 +359,13 @@ const bride = {
   align-items: center;
   justify-content: center;
   margin: 0 auto 20px;
+  overflow: hidden;
+}
+
+.photo-icon {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
 }
 
 .person-name {

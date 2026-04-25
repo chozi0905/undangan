@@ -1,13 +1,30 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import bgRsvp from '@/assets/picture/background2.png'
 
 const props = defineProps(['name'])
+
+let observer = null
+const visible = ref(false)
 
 const guestName = ref('')
 const message = ref('')
 const attendance = ref('hadir')
 const guestCount = ref(1)
+
+onMounted(() => {
+  const section = document.querySelector('.rsvp')
+  observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      visible.value = entry.isIntersecting
+    })
+  }, { threshold: 0.2 })
+  if (section) observer.observe(section)
+})
+
+onUnmounted(() => {
+  if (observer) observer.disconnect()
+})
 
 const sendToWhatsApp = () => {
   const finalName = guestName.value || props.name || 'Tamu Undangan'
@@ -30,7 +47,7 @@ Dikirim dari Undangan Digital`
 </script>
 
 <template>
-  <section class="rsvp" :style="{ backgroundImage: `url(${bgRsvp})` }">
+  <section class="rsvp" :style="{ backgroundImage: `url(${bgRsvp})` }" :class="{ visible }">
     <!-- Section Header -->
     <div class="section-header">
       <div class="header-ornament">
@@ -147,6 +164,14 @@ Dikirim dari Undangan Digital`
   flex-direction: column;
   align-items: center;
   position: relative;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease;
+}
+
+.rsvp.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Section Header */

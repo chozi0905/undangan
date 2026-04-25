@@ -1,5 +1,9 @@
 <script setup>
+import { ref, onMounted, onUnmounted } from 'vue'
 import bgStory from '@/assets/picture/background2.png'
+
+let observer = null
+const visible = ref(false)
 
 // Story timeline data
 const stories = [
@@ -25,10 +29,24 @@ const stories = [
     icon: 'ring'
   }
 ]
+
+onMounted(() => {
+  const section = document.querySelector('.story')
+  observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      visible.value = entry.isIntersecting
+    })
+  }, { threshold: 0.2 })
+  if (section) observer.observe(section)
+})
+
+onUnmounted(() => {
+  if (observer) observer.disconnect()
+})
 </script>
 
 <template>
-  <section class="story" :style="{ backgroundImage: `url(${bgStory})` }">
+  <section class="story" :style="{ backgroundImage: `url(${bgStory})` }" :class="{ visible }">
     <!-- Section Header -->
     <div class="section-header">
       <div class="header-ornament">
@@ -103,6 +121,14 @@ const stories = [
   align-items: center;
   position: relative;
   overflow: hidden;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease;
+}
+
+.story.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Section Header */

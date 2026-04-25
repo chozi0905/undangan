@@ -1,4 +1,5 @@
 <script setup>
+import { ref, onMounted, onUnmounted } from 'vue'
 import pict1 from '@/assets/picture/pict1.jpeg'
 import pict2 from '@/assets/picture/pict2.jpeg'
 import pict3 from '@/assets/picture/pict3.jpeg'
@@ -10,10 +11,26 @@ import pict8 from '@/assets/picture/pict8.jpeg'
 import bgGallery from '@/assets/picture/background2.png'
 
 const photos = [pict1, pict2, pict3, pict4, pict5, pict6, pict7, pict8]
+let observer = null
+const visible = ref(false)
+
+onMounted(() => {
+  const section = document.querySelector('.gallery')
+  observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      visible.value = entry.isIntersecting
+    })
+  }, { threshold: 0.2 })
+  if (section) observer.observe(section)
+})
+
+onUnmounted(() => {
+  if (observer) observer.disconnect()
+})
 </script>
 
 <template>
-  <section class="gallery" :style="{ backgroundImage: `url(${bgGallery})` }">
+  <section class="gallery" :style="{ backgroundImage: `url(${bgGallery})` }" :class="{ visible }">
     <!-- Section Header -->
     <div class="section-header">
       <div class="header-ornament">
@@ -59,6 +76,14 @@ const photos = [pict1, pict2, pict3, pict4, pict5, pict6, pict7, pict8]
   flex-direction: column;
   align-items: center;
   position: relative;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease;
+}
+
+.gallery.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Section Header */
@@ -90,10 +115,11 @@ const photos = [pict1, pict2, pict3, pict4, pict5, pict6, pict7, pict8]
 .photo-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(4, auto);
   gap: 12px;
   width: 100%;
   max-width: 500px;
+  padding: 0 8px;
+  box-sizing: border-box;
 }
 
 .photo-item {
@@ -101,19 +127,17 @@ const photos = [pict1, pict2, pict3, pict4, pict5, pict6, pict7, pict8]
   border-radius: 12px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
   transition: all 0.3s ease;
-  opacity: 1;
+  background: #f0e6d6;
 }
 
 .photo-item:hover {
   transform: scale(1.02);
   box-shadow: 0 8px 24px rgba(212, 180, 131, 0.25);
-  opacity: 1;
 }
 
 .photo-item img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
   display: block;
   transition: transform 0.4s ease;
 }
@@ -122,15 +146,17 @@ const photos = [pict1, pict2, pict3, pict4, pict5, pict6, pict7, pict8]
   transform: scale(1.05);
 }
 
-/* Varying heights for masonry effect */
-.photo-1 { aspect-ratio: 3 / 4; }
-.photo-2 { aspect-ratio: 4 / 3; }
-.photo-3 { aspect-ratio: 1 / 1; }
-.photo-4 { aspect-ratio: 4 / 3; }
-.photo-5 { aspect-ratio: 3 / 4; }
-.photo-6 { aspect-ratio: 1 / 1; }
-.photo-7 { aspect-ratio: 4 / 3; }
-.photo-8 { aspect-ratio: 3 / 4; }
+/* Fixed heights for consistent grid */
+.photo-1, .photo-5 { height: 200px; }
+.photo-2, .photo-4, .photo-7 { height: 150px; }
+.photo-3, .photo-6 { height: 175px; }
+.photo-8 { height: 200px; }
+
+.photo-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
 /* Bottom Decoration */
 .bottom-decoration {

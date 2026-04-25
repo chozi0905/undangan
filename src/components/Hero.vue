@@ -1,12 +1,30 @@
 <script setup>
+import { ref, onMounted, onUnmounted } from 'vue'
 import bgHero from '@/assets/picture/background1.png'
 
 defineProps(['name'])
+
+const visible = ref(false)
+let observer = null
+
+onMounted(() => {
+  const section = document.querySelector('.hero')
+  observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      visible.value = entry.isIntersecting
+    })
+  }, { threshold: 0.2 })
+  if (section) observer.observe(section)
+})
+
+onUnmounted(() => {
+  if (observer) observer.disconnect()
+})
 </script>
 
 <template>
   <section class="hero" :style="{ backgroundImage: `url(${bgHero})` }">
-    <div class="hero-content">
+    <div class="hero-content" :class="{ visible }">
       <!-- Bismillah -->
       <p class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
 
@@ -75,6 +93,14 @@ defineProps(['name'])
   max-width: 420px;
   min-height: calc(100vh - 120px);
   min-height: calc(100dvh - 120px);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease;
+}
+
+.hero-content.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Ornament */

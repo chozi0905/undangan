@@ -1,9 +1,27 @@
 <script setup>
+import { ref, onMounted, onUnmounted } from 'vue'
 import bgFooter from '@/assets/picture/background3.png'
+
+let observer = null
+const visible = ref(false)
+
+onMounted(() => {
+  const section = document.querySelector('.footer')
+  observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      visible.value = entry.isIntersecting
+    })
+  }, { threshold: 0.2 })
+  if (section) observer.observe(section)
+})
+
+onUnmounted(() => {
+  if (observer) observer.disconnect()
+})
 </script>
 
 <template>
-  <footer class="footer" :style="{ backgroundImage: `url(${bgFooter})` }">
+  <footer class="footer" :style="{ backgroundImage: `url(${bgFooter})` }" :class="{ visible }">
     <!-- Top Decoration -->
     <div class="footer-decoration">
       <svg width="80" height="40" viewBox="0 0 80 40" fill="none">
@@ -45,6 +63,14 @@ import bgFooter from '@/assets/picture/background3.png'
   align-items: center;
   text-align: center;
   position: relative;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease;
+}
+
+.footer.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Footer Decoration */

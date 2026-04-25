@@ -1,8 +1,10 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import bgGift from '@/assets/picture/background2.png'
 
 const copied = ref(null)
+let observer = null
+const visible = ref(false)
 
 const accounts = [
   {
@@ -39,10 +41,24 @@ const copyToClipboard = async (text, id) => {
     console.error('Failed to copy:', err)
   }
 }
+
+onMounted(() => {
+  const section = document.querySelector('.gift')
+  observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      visible.value = entry.isIntersecting
+    })
+  }, { threshold: 0.2 })
+  if (section) observer.observe(section)
+})
+
+onUnmounted(() => {
+  if (observer) observer.disconnect()
+})
 </script>
 
 <template>
-  <section class="gift" :style="{ backgroundImage: `url(${bgGift})` }">
+  <section class="gift" :style="{ backgroundImage: `url(${bgGift})` }" :class="{ visible }">
     <!-- Section Header -->
     <div class="section-header">
       <div class="header-ornament">
@@ -116,6 +132,14 @@ const copyToClipboard = async (text, id) => {
   flex-direction: column;
   align-items: center;
   position: relative;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease;
+}
+
+.gift.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Section Header */

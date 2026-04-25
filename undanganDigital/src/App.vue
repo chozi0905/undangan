@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 
@@ -17,6 +17,9 @@ const opened = ref(false)
 const guestName = ref('Tamu Undangan')
 const petals = ref([])
 
+let petalInterval = null
+let petalIdCounter = 0
+
 onMounted(() => {
   const params = new URLSearchParams(window.location.search)
   if (params.get('to')) guestName.value = params.get('to')
@@ -27,27 +30,47 @@ onMounted(() => {
   })
 })
 
+const addPetal = () => {
+  petals.value.push({
+    id: petalIdCounter++,
+    left: Math.random() * 100,
+    delay: Math.random() * 0.5,
+    duration: 4 + Math.random() * 4,
+    size: 15 + Math.random() * 20
+  })
+}
+
+const removePetal = (id) => {
+  const index = petals.value.findIndex(p => p.id === id)
+  if (index > -1) {
+    petals.value.splice(index, 1)
+  }
+}
+
 const createPetals = () => {
-  for (let i = 0; i < 1000; i++) {
-    petals.value.push({
-      id: Date.now() + i,
-      left: Math.random() * 100,
-      delay: Math.random() * 2,
-      duration: 3 + Math.random() * 3,
-      rotate: Math.random() * 360,
-      size: 15 + Math.random() * 20
-    })
+  // Add initial batch
+  for (let i = 0; i < 20; i++) {
+    addPetal()
   }
 
-  setTimeout(() => {
-    petals.value = []
-  }, 20 * 60 * 1000)
+  // Continue adding petals periodically
+  petalInterval = setInterval(() => {
+    if (petals.value.length < 50) {
+      addPetal()
+    }
+  }, 300)
 }
 
 const handleOpen = () => {
   createPetals()
   opened.value = true
 }
+
+onUnmounted(() => {
+  if (petalInterval) {
+    clearInterval(petalInterval)
+  }
+})
 </script>
 
 <template>
@@ -62,9 +85,9 @@ const handleOpen = () => {
         left: p.left + '%',
         animationDelay: p.delay + 's',
         animationDuration: p.duration + 's',
-        width: p.size + 'px',
-        transform: 'rotate(' + p.rotate + 'deg)'
+        width: p.size + 'px'
       }"
+      @animationend="removePetal(p.id)"
       alt=""
     />
   </div>
@@ -102,11 +125,11 @@ const handleOpen = () => {
 @keyframes fall {
   0% {
     top: -50px;
-    opacity: 0.8;
+    transform: translateX(0) rotate(0deg);
   }
   100% {
     top: 110vh;
-    opacity: 0;
+    transform: translateX(30px) rotate(360deg);
   }
 }
 </style>

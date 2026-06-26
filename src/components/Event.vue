@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 
-const targetDate = new Date('2026-12-06T08:00:00+07:00')
+const targetDate = new Date('2026-11-22T08:00:00+07:00')
 
 const timeLeft = ref({
   days: 0,
@@ -101,7 +101,7 @@ const locationUrl = 'https://maps.google.com/?q=Villa+17'
             <path d="M3 10H21" stroke="#d4b483" stroke-width="1.5"/>
             <path d="M8 2V6M16 2V6" stroke="#d4b483" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
-          <p class="event-date">Minggu, 06 Desember 2026</p>
+          <p class="event-date">Minggu, 22 November 2026</p>
         </div>
 
         <div class="event-detail">
@@ -158,7 +158,7 @@ const locationUrl = 'https://maps.google.com/?q=Villa+17'
             <path d="M3 10H21" stroke="#d4b483" stroke-width="1.5"/>
             <path d="M8 2V6M16 2V6" stroke="#d4b483" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
-          <p class="event-date">Minggu, 06 Desember 2026</p>
+          <p class="event-date">Minggu, 22 November 2026</p>
         </div>
 
         <div class="event-detail">

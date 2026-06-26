@@ -10,22 +10,36 @@ const stories = [
   {
     id: 1,
     title: 'Pertemuan Pertama',
-    date: 'Oktober 2017',
-    description: 'Semuanya bermula dari sebuah pertemuan yang sederhana. Dua orang yang tidak disangka ternyata memiliki banyak kesamaan. Satu kali pertemuan yang tidak disangka membawa cerita yang begitu indah.',
+    date: 'Mei 2023',
+    description: 'Segalanya bermula dari sebuah pertemuan yang tidak direncanakan sendiri, melainkan dijodohkan oleh orang tua. Awalnya terasa canggung, namun dari pertemuan sederhana itu tumbuh rasa ingin saling mengenal lebih dalam.',
     icon: 'heart'
   },
   {
     id: 2,
     title: 'Menjalin Kedekatan',
-    date: 'Desember 2018',
-    description: 'Seiring waktu, kami belajar saling menghargai dan memahami. Setiap hari bersama terasa begitu bermakna. Kedekatan yang tumbuh perlahan tapi pasti membawa kami lebih dekat.',
+    date: 'Juni 2023',
+    description: 'Seiring berjalannya waktu, komunikasi yang terjalin membawa kami semakin dekat. Kami mulai membangun hubungan dengan penuh kasih sayang, saling memahami, dan belajar menerima satu sama lain apa adanya.',
     icon: 'flower'
   },
   {
     id: 3,
+    title: 'Keyakinan dan Keseriusan',
+    date: 'Juli 2024',
+    description: 'Keyakinan itu akhirnya datang. Kami sepakat untuk melangkah ke jenjang yang lebih serius, dengan niat menjadikan hubungan ini sebagai perjalanan menuju pernikahan.',
+    icon: 'flower'
+  },
+  {
+    id: 4,
+    title: 'Lamaran',
+    date: 'Awal November 2026',
+    description: 'Dengan niat yang tulus, kami melangkah bersama dalam sebuah lamaran, mengikat janji untuk menuju kehidupan yang lebih sakral.',
+    icon: 'ring'
+  },
+  {
+    id: 5,
     title: 'Ijab Kabul',
-    date: 'Desember 2026',
-    description: 'Akhirnya menjadi hari yang kami tunggu. Dengan restu keluarga dan teman-teman tercinta, kami resmi melangkah bersama dalam satu ikatan yang sakral.',
+    date: 'Akhir November 2026',
+    description: 'Perjalanan yang dimulai dari pertemuan sederhana kini sampai pada puncaknya. Dalam ikatan suci pernikahan, kami berjanji untuk saling mencintai, menjaga, dan mendampingi seumur hidup.',
     icon: 'ring'
   }
 ]

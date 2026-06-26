@@ -11,7 +11,9 @@ const emit = defineEmits(['open'])
     <div class="content">
       <!-- Decorative Frame -->
       <div class="frame-wrapper">
-        <img :src="photo" class="photo" alt="Couple Photo" />
+        <div class="photo-container">
+          <img :src="photo" class="photo" alt="Couple Photo" />
+        </div>
         <div class="frame-border"></div>
 
         <!-- Side Flourish - Left -->
@@ -114,13 +116,24 @@ const emit = defineEmits(['open'])
   max-width: 220px;
 }
 
-.photo {
+/* ✅ PERUBAHAN: Tambah container dengan overflow hidden */
+.photo-container {
   width: 100%;
   aspect-ratio: 3 / 4;
-  object-fit: cover;
   border-radius: 100px 100px 20px 20px;
-  display: block;
+  overflow: hidden;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+/* ✅ PERUBAHAN: Foto di-scale untuk zoom in, fokus ke tengah atas (area wajah) */
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 27% 20%;
+  transform: scale(1.35);
+  transform-origin: 27% 20%;
+  display: block;
 }
 
 .frame-border {

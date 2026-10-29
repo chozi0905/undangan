@@ -109,7 +109,7 @@ const locationUrl = 'https://maps.google.com/?q=Villa+17'
             <circle cx="12" cy="12" r="9" stroke="#d4b483" stroke-width="1.5" fill="none"/>
             <path d="M12 7V12L16 14" stroke="#d4b483" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
-          <p class="event-time">Pukul 08.00 WIB</p>
+          <p class="event-time">Pukul 09.00 WIB</p>
         </div>
 
         <div class="event-detail">
